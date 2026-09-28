@@ -58,5 +58,10 @@ pipeline {
                 
             }
         }
+        stage("Deploy"){
+            sh 'docker stop my-app 2> /dev/null || true'
+            sh 'docker rm my-app 2> /dev/null || true'
+            sh 'docker run --name my-app abobakryousre/my-app:$BUILD_NUMBER'
+        }
     }
 }
