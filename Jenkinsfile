@@ -13,24 +13,28 @@ pipeline {
                 sh 'docker build . -t abobakryousre/my-app:$BUILD_NUMBER'
             }
         }
-        stage("Unit Test"){
-            steps {
-                sh 'docker run abobakryousre/my-app:$BUILD_NUMBER echo testing..... '
-                
+        stage("Test"){
+            parallel {
+
+                stage ("Unit Test"){
+                    steps {
+                        echo "Unit Test"
+                    }
+                }
+                stage ("Integration Test"){
+                    steps {
+                        echo "Intergration Test"
+                    }
+                }
+                stage ("E2E Test"){
+                    steps {
+                        echo "E2E test"
+                    }
+                }
             }
+            
         }
-        stage("Integration Test"){
-            steps {
-                sh 'docker run abobakryousre/my-app:$BUILD_NUMBER echo testing..... '
-                
-            }
-        }
-        stage("E2E Test"){
-            steps {
-                sh 'docker run abobakryousre/my-app:$BUILD_NUMBER echo testing..... '
-                
-            }
-        }
+
         stage("Release"){
             steps {
   
