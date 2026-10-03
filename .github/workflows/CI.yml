@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ "*" ]
+
+
+jobs:
+  Checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code 
+        run: echo "checking out code"
+  Buld:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Build Docker Image
+        run: echo "building docker image"
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing
+        run: echo "testing"
+
+  Release:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Push Docker image
+        run: echo "pushing docker image"
+
+
